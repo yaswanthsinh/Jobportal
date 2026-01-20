@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'portal/bootstrap.min.css' %}">
+    <script src="{% static 'portal/bootstrap.bundle.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: aliceblue;">
+    <div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-mb-6 shadow shadow-md rounded p-3 col-10" style="background-color:cornsilk;">
+            <h1 class="text-center">Register</h1>
+            <hr>
+            <form action="{% url 'employee_register' %}" method="post">
+
+                {% csrf_token %}
+                <div class="row mt-2">
+                    <div class="mb-3 col">
+                        <label class="form-label fw-bold">First Name</label>
+                        <input type="text" autocomplete="off" class="form-control form-control-sm shadow-none "  name="first" required>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label fw-bold">Last Name</label>
+                        <input type="text" autocomplete="off" class="form-control form-control-sm shadow-none"  name="last" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label class="form-label fw-bold">Role</label>
+                        <input type="text" autocomplete="off" class="form-control form-control-sm shadow-none"  name="role" required>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label fw-bold">Company or Organization</label>
+                        <input type="text"autocomplete="off" class="form-control form-control-sm shadow-none"  name="company" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label class="form-label fw-bold">Username</label>
+                        <input type="text" autocomplete="off" class="form-control form-control-sm shadow-none"  name="username" required>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label fw-bold">Email</label>
+                        <input type="email"autocomplete="off" class="form-control form-control-sm shadow-none"  name="email" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label class="form-label fw-bold">Password</label>
+                        <input type="password"  class="form-control form-control-sm shadow-none" name="password" required>
+                    </div>
+                    <div class="mb-3 col d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary btn-sm w-100">Submit</button>
+                    </div>
+                </div>
+            </form>
+           
+            <div class="text-center">
+                <a href="{% url 'login'%}">Sign in</a>
+            </div>
+
+        </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'portal/bootstrap.min.css' %}">
+    <script src="{% static 'portal/bootstrap.bundle.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+     <script>
+            document.addEventListener("DOMContentLoaded",() =>{
+
+                if(document.querySelector(".modal-body").textContent.trim() !== ""){
+                    const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
+                    modal.show();
+                }
+
+            });
+
+
+    </script>
+</head>
+<body>
+   
+    <div class="container">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Login Status</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{message}}
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="p-4 col-md-6 col-8 shadow shadow-md rounded bg-light">
+                 <h1 class="text-center">Login</h1>
+                 <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Username</label>
+                        <input type="text" autocomplete="off" class="form-control form-control-sm shadow-none "  name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Password</label>
+                        <input type="password" autocomplete="off" class="form-control form-control-sm shadow-none  " name="password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <div class="mt-4">
+                    <a href="{% url 'register' %}">Create Account</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>

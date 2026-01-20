@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'portal/bootstrap.min.css' %}">
+    <script src="{% static 'portal/bootstrap.bundle.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>posts</title>
+</head>
+<body>
+    <div class="container">
+        <div class="shadow shadow-md p-4 mt-5 rounded" style="background-color: lightpink;">
+            <h2 class="text-center">Job Post
+                <a class="btn btn-success btn-sm float-end" href="{% url 'index'%}">Back</a>
+            </h2>
+            <hr>
+            <form action="{% url 'job_post'%}" method="post" >
+                {% csrf_token %}
+                <div class="row">
+                    <div class=" col mb-3">
+                        <label class="form-label fw-bold ">Title</label>
+                        <input type="text" autocomplete="off" name="title" class="form-control form-control-sm " required>
+                    </div>
+                    <div class="col mb-3">
+                        <label class="form-label fw-bold">Location</label>
+                        <input type="text" autocomplete="off" name="location" class="form-control form-control-sm " required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="form-label fw-bold">Salary</label>
+                        <input type="number" autocomplete="off" step="any" name="salary" class="form-control form-control-sm " required>
+                    </div>
+                    <div class="col mb-3">
+                        <label class="form-label fw-bold">Description</label>
+                        <textarea type="text" autocomplete="off" name="description" class="form-control form-control-sm " required></textarea>
+                    </div>
+                </div>
+                
+                <div class="mb-3 d-flex justify-content-center">
+                    <input class="btn btn-warning" type="submit" value="Add Post">
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

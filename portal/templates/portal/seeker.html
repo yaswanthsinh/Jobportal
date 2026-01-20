@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'portal/bootstrap.min.css' %}">
+    <script src="{% static 'portal/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'portal/skills.js' %}"></script>
+    <script src="{% static 'portal/experience.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user</title>
+    <script>
+           
+            function handleClick(Clickedbutton){
+                buttonId = Clickedbutton;
+
+                const button = document.querySelector(`#${buttonId}`);
+                const form1 = document.querySelector(`#form-${buttonId}`);
+               
+                if(form1.style.display === "none"){
+                    form1.style.display = "block";
+                    button.textContent = "Hide";
+                    button.classList.replace("btn-success","btn-info");
+                } else{
+                    form1.style.display = "none";
+                    button.textContent = "update";
+                    button.classList.replace("btn-info","btn-success");
+                }
+            }
+        
+    </script>
+    
+</head>
+<body style="background-color:aliceblue;">
+    <div class="container">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Application Status</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h1>Welcome {{first}}!
+                <a class="btn btn-secondary float-end" href="{% url 'index' %}">Back</a>
+            </h1>
+        </div>
+        <hr>
+        <div class="mt-5">
+            <div class="row mb-4">
+                <div class="shadow shadow-sm p-3 col-11 ms-3 col-sm-12 rounded" style="background-color: cornsilk;">
+
+                    <h3>Skills  
+                        <button class="btn btn-sm btn-success float-end" id="skills" onclick="handleClick(this.id)">update</button>
+                    </h3>
+                    <ul class="list-group list-group-horizontal flex-wrap" id="list-skill">
+                        {% for skill in seeker_skills %}
+                         <li class="list-group-item ms-2 mt-2 shadow shadow-sm rounded" id="sk-btn"><span>{{skill}}</span>
+                            <button style="font-size:7px;" class="btn btn-close btn-dark delete-btn" data-id="{{skill.id}}"></button>
+                         </li>
+                         
+                         {% empty %}
+                         <li class="list-group-item">Skills not added yet.</li>
+                         {% endfor %}
+                    </ul>
+
+                    <form class="mt-3" style="display:none;" id="form-skills">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <input autocomplete="off" class="form-control form-control-sm shadow-none" type="text" id="text-skills" placeholder="JavaScript">
+                            </div>
+                            <div class="col d-flex align-items-center">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Add Skill">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="shadow shadow-sm rounded p-3 col-11 ms-3 col-sm-12 rounded" style="background-color: cornsilk;">
+                    <h3>Experience (years)
+                        <button class="btn btn-sm btn-success float-end" id="experience" onclick="handleClick(this.id)">update</button>
+                    </h3>
+                    <div id="exp">{{experience}}</div>
+
+                    <form style="display:none;" id="form-experience" class="mt-3">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control form-control-sm shadow-none" autocomplete="off" type="text" id="user_experience" placeholder="2">
+                            </div>
+                            <div class="col d-flex align-items-center">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Add Experience">
+                            </div>
+                        </div> 
+                    </form>
+                </div> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'portal/bootstrap.min.css' %}">
+    <script src="{% static 'portal/bootstrap.bundle.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            font-weight: 800;
+        }
+       
+    </style>
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <p class="navbar-brand">JobPortal</p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Sign in</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Register
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'user_register'%}">Job Seeker</a></li>
+                        <li><a class="dropdown-item" href="{% url 'employee_register'%}">Employer</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        </div>
+        </nav>
+    
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8 col-10 text-center mt-5" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                    <h1>Welcome to JobPortal</h1>
+                    <p>Your gateway to exciting job opportunities!</p>
+                </div>
+            </div>
+        </div>
+        
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'portal/bootstrap.min.css' %}">
+    <script src="{% static 'portal/bootstrap.bundle.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emplyee data</title>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+
+            document.querySelectorAll("#post_id").forEach(btn =>{
+
+                btn.onclick = () =>{
+                    hideout(btn.dataset.id,btn);
+                };
+            });
+        });
+
+        const hideout = (id, btn) =>{
+
+            const content = document.querySelector(`#more-${id}`);
+            if(content.style.display === "none"){
+                content.style.display = "block";
+                btn.textContent = "see less";
+                btn.classList.remove("btn-warning");
+                btn.classList.add("btn-info");
+            }else{
+                content.style.display = "none";
+                btn.textContent = "see more";
+                btn.classList.remove("btn-info");
+                btn.classList.add("btn-warning");
+            }
+
+        }
+    </script>
+</head>
+<body style="background-color: azure;">
+    
+      <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <div class="container-fluid">
+            <p class="navbar-brand">{{first}} {{last}}</p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'job_post'%}">Job post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="">My posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout'%}">logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="mt-3">
+            <ul class="list-group">
+                {% for post in posts %}
+                    <li class="shadow shadow-sm rounded mb-3 list-group-item" style="background-color:cornsilk">
+                        <button id="post_id" class="btn btn-sm btn-warning float-end ms-2" data-id="{{post.id}}">see more</button>
+                        <a href="{% url 'applicants' post.id %}" class="btn btn-sm btn-success float-end">Applicants</a>
+                        <h5 style="font-size: 15px;">{{company}}</h5>
+                        <div style="font-size:14px;" class="fw-bold">{{post.title}}</div>
+                        <div style="display:none;" id="more-{{post.id}}">
+                            <div style="font-size:14px;"><span class="fw-bold">Salary:</span> {{post.salary}} LPA</div>
+                            <div style="font-size:14px;"><span class="fw-bold">Location:</span> {{post.location}} </div>
+                            <div style="font-size:14px"><span class="fw-bold">Description:</span> {{post.description}}</div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class=" shadow shadow-sm text-center mt-4 list-group-item">You haven't post anything</li>
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'portal/bootstrap.min.css' %}">
+    <script src="{% static 'portal/bootstrap.bundle.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>applied jobs</title>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+
+            document.querySelectorAll("#more").forEach( btn=>{
+                btn.onclick = () =>{
+                    hideContent(btn.dataset.id,btn);
+                };
+
+            });
+
+        });
+
+        const hideContent = (id,btn) =>{
+
+           const content =  document.querySelector(`#more-${id}`);
+           if(content.style.display === "none"){
+                content.style.display = "block";
+                btn.textContent = "see less";
+                btn.classList.remove("btn-warning");
+                btn.classList.add("btn-info");
+           }else{
+                content.style.display = "none";
+                btn.textContent = "see more";
+                btn.classList.remove("btn-info");
+                btn.classList.add("btn-warning");
+           }
+
+        };
+    </script>
+</head>
+<body style="background-color: azure;">
+    <div class="container mt-4">
+        <h2>Jobs applied by {{first}}
+            <a class="btn btn-secondary float-end" href="{% url 'index'%}">Back</a>
+        </h2>
+        <hr>
+        <ul class="list-group">
+            {% for application in applications %}
+                <li class="list-group-item mb-3 shadow shadow-sm" style="background-color: cornsilk;">
+                    <button id="more" class="btn btn-warning btn-sm float-end" data-id="{{application.id}}">see more</button>
+                    <h5 style="font-size:14px;">{{application.job.employer.company_name}}</h5>
+                    <div style="font-size:14px;" class="fw-bold">{{application.job.title}}</div>
+                    <div id="more-{{application.id}}" style="display:none;">
+                        <div style="font-size:14px;"><span class="fw-bold">Salary: </span>{{application.job.salary}} LPA</div>
+                        <div style="font-size:14px;"><span class="fw-bold">Location: </span>{{application.job.location}} </div>
+                        <div style="font-size:14px;"><span class="fw-bold">Description: </span>{{application.job.description}}</div>
+                    </div>
+                </li>
+            {% empty%}
+                <li class="list-group-item mb-3 shadow shadow-sm">you haven't applied anything yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+</body>
+</html>
