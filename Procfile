@@ -1,1 +1,1 @@
-web: gunicorn jobportal.wsgi --logi-file -
+web: gunicorn jobportal.wsgi 
