@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qinsh08^m*n4-f4ov-jt^jgf@f&6s&7-h=+0%d*0s_dr)@s=09
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["web-production-6d4c3.up.railway.app","localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["jobportal-webapp.up.railway.app","localhost", "127.0.0.1"]
 
 
 # Application definition
