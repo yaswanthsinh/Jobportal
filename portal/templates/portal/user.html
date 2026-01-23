@@ -83,7 +83,7 @@
         </div>
         <form id="form" class="d-flex mt-3" method="get" onsubmit=" return validateSearch()">
             {% csrf_token %}
-            <input autocomplete="off" id="searchInput" name="q" class="form-control form-control-sm me-2 rounded w-75 shadow-none" type="search" placeholder="Search with company, role, location. one at a time." aria-label="Search" value="{{query}}" >
+            <input autocomplete="off" id="searchInput" name="q" class="form-control form-control-sm me-2 rounded w-75 shadow-none" type="search" placeholder="Search with company, role, location(state name e.g: Hyderabad). one at a time." aria-label="Search" value="{{query}}" >
             <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
         </form>
 
