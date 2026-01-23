@@ -15,6 +15,7 @@ employer can access the applicants who applied for their postings.
 
 ### Job Seeker
 Here Job have to register first by main page clicking register >> Job seeker. Then automatically gets to seeker landing page with fresh jobs and profile link which is used to update profile. if there are no jobs then it displays with statement like "Jobs Not Found". 
+Job seekers can apply by click on "apply" button and search for jobs based on category, company, location (state).
 
 ### admin panel
 step 1 : Go to jobportal-website/admin
